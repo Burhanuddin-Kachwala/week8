@@ -2,7 +2,7 @@
     <x-slot:heading>
         Edit {{$job->title}}
     </x-slot:heading>
-    <form action="/job/{{$job->id}}" method="POST" class="max-w-lg mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+    <form action="/jobs/{{$job->id}}" method="POST" class="max-w-lg mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
       @csrf
       @method('PATCH')
         <div class="mb-4">
@@ -61,7 +61,7 @@
 
 
     {{-- form to delete job --}}
-    <form action="/job/{{$job->id}}" method="POST" id="delete-job" class="hidden">
+    <form action="/jobs/{{$job->id}}" method="POST" id="delete-job" class="hidden">
         @csrf
         @method('DELETE')
         <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" form="delete-job">Delete</button>

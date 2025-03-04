@@ -9,7 +9,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach($jobs as $job)
         <div class="hover:shadow-2xl transition-transform transform hover:scale-105">
-            <a href='/job/{{$job['id']}}' class="no-underline">
+            <a href='/jobs/{{$job['id']}}' class="no-underline">
                 <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                     <h2 class="text-xl font-bold mb-2 text-blue-800">{{ $job['title'] }}</h2>
                     <p class="text-gray-700 mb-1">RS : {{ $job['salary'] }}</p>
