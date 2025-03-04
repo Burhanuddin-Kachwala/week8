@@ -37,12 +37,14 @@
     </nav>
 
     <header class=" text-gray-800 py-4 px-6 shadow-md">
+        
         <h1 class="text-2xl font-bold">{{ $heading }}</h1>
+       
     </header>
-
-
-
-    {{$slot}}
+    <div class="mx-4 my-6">
+       
+        {{$slot}}
+    </div>
 
 
 </body>
