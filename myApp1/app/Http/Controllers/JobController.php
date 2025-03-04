@@ -23,21 +23,9 @@ class JobController extends Controller
     }
 
     public function create()
-    {
-        // Validate input
-        request()->validate([
-            'title' => ['required', 'min:3'],
-            'salary' => ['required']
-        ]);
-
-        Jobs::create([
-            "title" => request('title'),
-            'salary' => request('salary'),
-            'employer_id' => '1'
-        ]);
-
-        // Redirect jobs
-        return redirect('/jobs');
+    {        
+       
+        return view('/jobs.create');
     }
 
     public function edit(Jobs $job)
