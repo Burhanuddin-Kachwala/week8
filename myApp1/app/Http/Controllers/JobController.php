@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Jobs;
+use App\Models\User;
+use App\Mail\JobsPosted;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class JobController extends Controller
 {
     public function index()
-    {
+        {
+            if(Auth::guest()){
+                return redirect('/login');
+            }
+            
         $jobs = Jobs::with('employer')->latest()->simplePaginate(6);
         return view('jobs.index', [
             'jobs' => $jobs
@@ -17,6 +26,7 @@ class JobController extends Controller
 
     public function show(Jobs $job)
     {
+        
         return view('jobs.show', [
             'job' => $job
         ]);
@@ -29,7 +39,7 @@ class JobController extends Controller
     }
 
     public function edit(Jobs $job)
-    {
+    {      
         return view('jobs.edit', [
             'job' => $job
         ]);
@@ -43,11 +53,14 @@ class JobController extends Controller
             'salary' => ['required']
         ]);
 
-        Jobs::create([
+        $job =Jobs::create([
             "title" => request('title'),
             'salary' => request('salary'),
-            'employer_id' => '1'
+            'employer_id' => '11'
         ]);
+        Mail::to($job->employer->user)->queue(
+            new JobsPosted($job)
+        );
 
         // Redirect jobs
         return redirect('/jobs');

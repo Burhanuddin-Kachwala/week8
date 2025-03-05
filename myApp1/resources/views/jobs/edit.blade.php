@@ -36,14 +36,16 @@
             </p> 
         @enderror
         </div>
+
         <div class="flex items-center justify-between">
-           {{-- the button that triggers the below form to delete job --}}
-        <button 
-            type="submit" 
-            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
-            form="delete-job"
-            >Delete
-        </button>
+            @can('edit-job', $job)
+                {{-- the button that triggers the below form to delete job --}}
+                <button type="submit"
+                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    form="delete-job">Delete
+                </button>
+            @endcan
+          
            
     <div class="flex items-center">
         <button 
