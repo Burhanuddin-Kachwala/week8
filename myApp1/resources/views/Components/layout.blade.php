@@ -11,6 +11,7 @@
     <script src="node_modules/@material-tailwind/html/scripts/collapse.js"></script>
     <!-- from cdn -->
     <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js"></script>
+    @vite(['resources/css/app.css'])
 </head>
 
 <body>
@@ -18,8 +19,8 @@
         <div class="flex flex-wrap items-center justify-between mx-auto text-gray-100">
             <div>
                 <x-nav-links href="/" :active="request()->is('/')">Home</x-nav-link>
-                    <x-nav-links href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
-                        <x-nav-links href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
+                <x-nav-links href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
+                <x-nav-links href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
             </div>
 
             <div class="hidden lg:block">
@@ -30,9 +31,8 @@
                      @endguest
                      @auth
                      <form method="POST" action="/logout">
-                         @csrf
-
-                         <x-form-button>Log Out</x-form-button>
+                        @csrf
+                        <x-form-button>Log Out</x-form-button>
                      </form>
              @endauth
 
